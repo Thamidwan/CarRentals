@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Cars</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'landing' %}">Home</a>
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'booked_cars' %}">Booked Cars</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Your Booked Cars</h1>
+
+        {% if booked_cars %}
+            <div class="booked-cars-list">
+                {% for car in booked_cars %}
+                    <div class="booked-car-item">
+                        
+                        <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
+                        <p>Status: {{ car.available|yesno:"Available, Not Available" }}</p>
+                        <p>Return Date: {{ car.return_date }}</p> <!-- Assuming return_date is part of your booking -->
+                        <form action="{% url 'cancel_booking' car.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="cancel-button">Cancel Booking</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No booked cars.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Motorsport 4 Rentals. All rights reserved.</p>
+    </footer>
+</body>
+</html>

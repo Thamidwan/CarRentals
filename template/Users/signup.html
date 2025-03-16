@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <form class="form" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <p class="title">Register</p>
+        <p class="message">Signup now and get full access.</p>
+        
+        <label for="username">
+            <input id="username" name="username" required placeholder=" " type="text" class="input">
+            <span>Username</span>
+        </label> 
+        
+        <div class="flex">
+            <label for="firstname">
+                <input id="firstname" name="firstname" required placeholder=" " type="text" class="input">
+                <span>Firstname</span>
+            </label>
+    
+            <label for="lastname">
+                <input id="lastname" name="lastname" required placeholder=" " type="text" class="input">
+                <span>Lastname</span>
+            </label>
+        </div>  
+        
+        <label for="email">
+            <input id="email" name="email" required placeholder=" " type="email" class="input">
+            <span>Email</span>
+        </label> 
+        
+        <label for="password">
+            <input id="password" name="password" required placeholder=" " type="password" class="input">
+            <span>Password</span>
+        </label>
+        
+        <label for="confirm_password">
+            <input id="confirm_password" name="confirm_password" required placeholder=" " type="password" class="input">
+            <span>Confirm password</span>
+        </label>
+        <label for="phone_number">
+            <input id="phone_number" name="phone_number" required placeholder=" " type="text" class="input">
+            <span>Phone Number</span>
+        </label>
+        
+        <button type="submit" class="submit">Submit</button>
+        <p class="signin">Already have an account? <a href="/login">Signin</a></p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Cars</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'landing' %}">Home</a>
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'booked_cars' %}">Booked Cars</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Available Cars</h1>
+        <div class="car-list">
+            {% if cars %}
+                {% for car in cars %}
+                <div class="car-item">
+                    <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+                    <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
+                    <p>Status: {{ car.available|yesno:"Available, Unavailable" }}</p>
+                    
+                    {% if car.available %}
+                        <form action="{% url 'book_car' car.id %}" method="post">
+                            {% csrf_token %}
+                            <label for="return_date">Return Date:</label>
+                            <input type="date" name="return_date" required>
+                            <button type="submit">Book Now</button>
+                        </form>
+                    {% else %}
+                        <p>This car is currently unavailable for booking.</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No cars available at the moment.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Motorsport 4 Rentals. All rights reserved.</p>
+    </footer>
+</body>
+</html>

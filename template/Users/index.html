@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>BMW Motorsport 4</title>
+    <Style>
+        .contact {
+            display: flex;
+            align-items: center; 
+        }
+        
+        .information {
+            flex: 1; 
+            margin-right: 20px; 
+        }
+        
+        .carImage img {
+            max-width: 100%; 
+            height: 60vh; 
+            margin: 50px;
+        }
+        
+        .footer {
+            background-color: #333; 
+            color: #fff;
+            padding: 20px;
+            text-align: center; 
+        }
+        
+        .footer-content {
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        .footer-content p {
+            margin: 10px 0; 
+        }
+        
+        
+        
+    </Style>
+</head>
+<body>
+     
+    <!-- Header -->
+    <header>
+
+        <section class="navigation">
+
+            <!-- Logo -->
+            <div class="logo">
+                <img src="{% static 'img/logo.png' %}" alt="logo">
+            </div>
+
+
+            <div class="buttons">
+                <a href="{% url 'login' %}"><button class="signin">Sign In</button></a> <!-- Added href for login -->
+                <a href="{% url 'signup' %}"><button class="signup">Sign Up</button></a> <!-- Added href for signup -->
+            </div>
+
+        </section>
+
+        <section class="contact"> <!-- Corrected typo "contect" to "contact" -->
+
+            <!-- Opening information about the vehicle -->
+            <div class="information">
+                <h1>Experience the Thrill:
+                <br> Rent Your Dream Car Today <br>
+                at Motorsport 4 Rentals </h1>
+            
+                <strong><h3>Your Journey Begins with the Perfect Car</h3></strong>
+                <p>
+                    At Motorsport 4 Rentals, we offer more than just a vehicle; <br> 
+                    we provide an exceptional driving experience tailored to your needs. <br>
+                    Our diverse fleet includes high-performance cars that deliver the thrill of the open road, <br> 
+                    whether you’re planning a weekend getaway or a special occasion. <br>
+                    Enjoy unparalleled customer service, where our dedicated team is here to assist you at every turn, <br>
+                    ensuring that your rental experience is seamless and enjoyable.<br>
+                    From luxury sedans to sporty coupes, our vehicles are meticulously maintained <br>
+                    and equipped with the latest technology for a safe and exhilarating ride. <br>
+                    Embrace the journey, elevate your experience, <br> 
+                    and let Motorsport 4 Rentals be your trusted partner in adventure and luxury.<br>
+                </p>
+            </div>
+            
+
+            <!-- Car Image -->
+            <div class="carImage"> <!-- Corrected typo "carIamage" to "carImage" -->
+                <img src="{% static 'img/auto-car.png' %}" alt="BMW M4">
+            </div>            
+
+        </section>
+    </header>
+
+    <!-- Latest Models -->
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Motorsport 4 Rentals. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

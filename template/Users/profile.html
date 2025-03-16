@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'landing' %}">Home</a>
+            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'booked_cars' %}">Booked Cars</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>User Profile</h1>
+        
+        <div class="profile-container">
+            <div class="profile-info">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            </div>
+
+            <h2>Update Your Information</h2>
+            <form action="{% url 'update_user_info' %}" method="post" class="update-form">
+                {% csrf_token %}
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname" value="{{ user.first_name }}" required>
+
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" value="{{ user.last_name }}" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" value="{{ user.email }}" required>
+
+                <button type="submit">Update Information</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Motorsport 4 Rentals. All rights reserved.</p>
+    </footer>
+</body>
+</html>
